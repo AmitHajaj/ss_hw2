@@ -7,7 +7,7 @@ int main (){
 
 
 	while(in != 'E'){
-	   printf("Welcome! Please choose an action: (Note: our system is case sensitive. Use only capital.)\nOpen account - press O.\nCheck balance- press B.\nDeposit- press D.\nWithdraw- press W.\nClose account- press C.\nAdd an interest- press I.\nSee all accounts- press P.\nTerminate- press E.\n");
+	   printf("Please choose a transaction type:\n O-Open Account\n B-Balance inquiry\n D-Deposit\n W-Withdrawal\n C-Close account\n I-Interest\n P-Print\n E-Exit  ");
 	   scanf(" %c", &in);
 	   switch(in)
 	   {
@@ -15,15 +15,21 @@ int main (){
 		   {
 		       float amount;
 		       printf("Amount?");
-		       scanf("%f", &amount);
-		       open(amount);
-		       break;
+		       if(scanf("%f", &amount)==0){
+		       	printf("Invalid Amount\n");
+		       	break;
+		       }
+    		   open(amount);
+    		   break;		       
 		   }
 		   case 'B':
 		   {
 		       int num;
 		       printf("Account number?");
-		       scanf("%d", &num);
+		       if(scanf("%d", &num) == 0){
+		       	printf("Failed to read accout\n");
+		       	break;
+		       }
 		       balance(num);
 		       break;
 		   }
@@ -32,39 +38,59 @@ int main (){
 		       float amount;
 		       int num;
 		       printf("Account number?");
-		       scanf("%d", &num);
-
-		       printf("Amount?");
-		       scanf("%f", &amount);
+		       if(scanf("%d", &num) == 0){
+		       	printf("Failed to read accout\n");
+		       	break;
+		       }
+		       else{
+			       printf("Amount?");
+			       if(scanf("%f", &amount) == 0){
+			       	printf("Invalid Amount\n");
+			       	
+		       }
 		       deposit(num, amount);
 		       break;
+		       }
 		   }
 		   case 'W':
 		   {
 		       float amount;
 		       int num;
 		       printf("Account number?");
-		       scanf("%d", &num);
-
-		       printf("Amount?");
-		       scanf("%f", &amount);
+		       if(scanf("%d", &num) == 0){
+		       	printf("Failed to read accout\n");
+		       	break;
+		       }
+		       else{
+			       printf("Amount?");
+			       if(scanf("%f", &amount) == 0){
+			       	printf("Invalid Amount\n");
+			       	
+		       }
 		       withdraw(num, amount);
 		       break;
+		       }
 		   }
 		   case 'C':
 		   {
 		       int num;
 		       printf("Account number?");
-		       scanf("%d", &num);
+		       if(scanf("%d", &num) == 0){
+		       	printf("Failed to read accout\n");
+		       	break;
+		       }
 		       close(num);
 		       break;
 		   }
 		   case 'I':
-		   {
-		       float IR;
-		       printf("Interest rate?");
-		       scanf("%f", &IR);
-		       addInt(IR);
+		   {	       
+		       int num;
+		       printf("Please enter interest rate:");
+		       if(scanf("%d", &num) == 0){
+		       	printf("Failed to read accout\n");
+		       	break;
+		       }
+		       addInt(num);
 		       break;
 		   }
 		   case 'P':
@@ -79,7 +105,7 @@ int main (){
 		   }
 		   default:
             {
-                printf("Invalid input! please try again.\nRemember, only capital letters!\n");
+                printf("Invalid transaction type\n");
             }
 	   }
 	}

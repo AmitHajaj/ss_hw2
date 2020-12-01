@@ -7,7 +7,7 @@
         void deposit(int accountNum, float amount);
         void withdraw(int accountNum, float amount);
         void close(int accountNum);
-        void addInt(float interestRate);
+        void addInt(int interestRate);
         void toString();
         void end();
 
